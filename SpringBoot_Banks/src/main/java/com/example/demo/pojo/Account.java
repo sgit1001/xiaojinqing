@@ -1,6 +1,8 @@
 package com.example.demo.pojo;
 
 public class Account {
+	private int id;
+	
     private String cardno;
 
     private String password;
@@ -9,35 +11,56 @@ public class Account {
 
     private Integer status;
 
-    public String getCardno() {
-        return cardno;
-    }
+	public Account() {
+		super();
+	}
 
-    public void setCardno(String cardno) {
-        this.cardno = cardno == null ? null : cardno.trim();
-    }
+	public Account(int id, String cardno, String password, Double balance, Integer status) {
+		super();
+		this.id = id;
+		this.cardno = cardno;
+		this.password = password;
+		this.balance = balance;
+		this.status = status;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public Double getBalance() {
-        return balance;
-    }
+	public String getCardno() {
+		return cardno;
+	}
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
+	public void setCardno(String cardno) {
+		this.cardno = cardno;
+	}
 
-    public Integer getStatus() {
-        return status;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 }

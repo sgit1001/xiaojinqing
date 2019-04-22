@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+		<script type="text/javascript" src="../easyui/jquery.min.js" ></script>
+		<script type="text/javascript" src="../easyui/jquery.easyui.min.js" ></script>
+		<script type="text/javascript" src="../easyui/locale/easyui-lang-zh_CN.js" ></script>
+		<link rel="stylesheet" href="../easyui/themes/default/easyui.css" />
+		<link rel="stylesheet" href="../easyui/themes/icon.css" />
+</head>
+<body>
+	<div align="center">
+		<h1>信息</h1>
+				<button onclick="deletes()">删除</button>
+				<table id="aaa"></table>
+	</div>		
+
+</body>
+<script type="text/javascript">
+			
+			$("#aaa").datagrid({
+					url:"/km",
+					columns: [
+								[{
+										field: '',
+										title: '',
+										checkbox:true,		
+								},
+								 {
+									field: 'manId',
+									title: '编号',	
+								},
+								 {
+									field: 'manName',
+									title: '姓名',
+								},
+								{
+									field: 'manAge',
+									title: '年龄',
+								},
+								 {
+										field: 'manSex',
+										title: '性别',
+									},
+						]
+					],
+				});
+			function deletes(){
+					var rows = $('#aaa').datagrid('getSelections');
+						if(rows.length>1){
+							$.messager.alert('警告操作', '删除只能选定一条数据！', 'warning');
+						}else if(rows.length==1){
+						$.messager.confirm('删除警告', '你确定要删除吗?',function(){
+								$.ajax({
+								url: "/rm",
+								type: "post",
+								data: {
+									manId:rows[0].manId,
+								},
+								beforeSend: function() {
+									$.messager.progress({
+										text: '正在尝试提交...',
+									});
+								},
+								success: function(data) {
+									$.messager.progress('close');
+									if(data > 0) {
+										$.messager.show({
+											title: '提示',
+											msg: '删除成功！',
+										});
+										$('#aaa').datagrid('reload');
+									} else {
+										$.messager.alert('警告操作', '未知操作或无任何修改，请重 新提交！', 'warning');
+									}
+								}
+							})
+						
+						})
+					}else{
+						$.messager.alert('警告操作', '删除至少选择一条数据', 'warning');
+					}
+			
+			}
+				
+		
+</script>
+</html>

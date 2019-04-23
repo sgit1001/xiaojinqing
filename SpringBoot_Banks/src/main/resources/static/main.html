@@ -1,0 +1,243 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<script src="easyui/jquery.min.js"></script>
+	<script src="easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+	<link rel="stylesheet" href="easyui/themes/default/easyui.css" />
+	<link rel="stylesheet" href="easyui/themes/icon.css" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+	
+<body>
+<table align="center" border="1"  width="80%" height="400px"> 
+		<tr>
+			<td colspan="2" height="100px">
+				卡号:&nbsp;&nbsp;<font color="red">${cardno }</font>
+				&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath }/clear.do">退出登录</a>
+			</td>
+		</tr> 
+		<tr>
+			<td width="200px" align="center">
+				<a href="javascript:passon()">转账</a>
+				<br><br>
+				<a href="javascript:find()">查询余额</a> 
+				<br><br>
+				<a href="javascript:updatePwd()">修改密码</a>
+				<br><br>
+				<a href="javascript:findRecord()">查询交易记录</a>
+				<br><br>
+				</td>
+			<td>
+				<div style="border:2px solid blue;width:100%;height: 100%">
+					<div id="div1"  align="center"> 
+						<br>
+						<h1>欢迎使用个人网上银行</h1>
+					</div>
+					<div id="div2" style="display: none" align="center">
+						<input id="c" type="hidden" value="${cardno }">
+						<br>
+						<h3>
+						您的账户余额是:
+						<br><br><br>
+						人民币:&nbsp;	&nbsp;
+						￥ <font id="font" color="red"></font>
+						</h3> 
+					</div>
+					<div id="div3" style="display: none" align="center">
+						<div id="div3_1" align="center">
+							<h3>当前操作:转账。 请输入转入账户和金额后点击“转账”按钮</h3>
+							<br><br> 
+							<input id="passcard" type="hidden" value="${cardno }"/>
+							转入账号:&nbsp;&nbsp;&nbsp;<input id="cardno" style="border-radius:5px;"/><br><br>
+							转入金额:&nbsp;&nbsp;&nbsp;<input id="money" style="border-radius:5px;"/><br><br>
+							<font color="green">提示:您可用金额为￥</font><font id="fonts" color="red"></font><br><br>
+							<input type="button" onclick="pass()"  style="width: 80px;height: 30px" value="转账"/>
+						</div>
+					</div>
+					<div id="div4" style="display: none" align="center">
+						<h3>当前操作:查询交易记录。 请选择时间范围后点击“查询”按钮</h3><br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							查询日期范围:&nbsp;&nbsp;&nbsp;
+							<input id="date1" type="text" class="easyui-datebox"/>到
+							<input id="date2" type="text" class="easyui-datebox"/>
+							<input type="button" onclick="findDate()" style="width: 80px;height: 30px" value="查询"/>
+					</div>
+					<table id="topictable">
+							
+					</table>
+					<div id="div5" style="display: none" align="center">
+						<input id="pwd" type="hidden" value="${pwd }"/>
+						<h3>当前操作:查询交易记录。 请按要求填写完整后点击“修改”按钮</h3><br>
+							<div id="div5_1" align="center">
+								请输入旧密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input id="oldPwd" type="text" style="border-radius:5px;"/><br><br>
+								请输入新密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input id="newPwd" type="text" style="border-radius:5px;"/><br><br>
+								请再次输入新密码:&nbsp;&nbsp;&nbsp;
+								<input id="newsPwd" type="text" style="border-radius:5px;"/><br><br>
+								<input type="button" onclick="updatAccount()" style="width: 80px;height: 30px" value="修改"/>
+							</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript">
+	var num = 0;
+	var cardno="";
+	function find() {
+		$("#div1").css("display","none");
+		$("#div3").css("display","none");
+		$("#div2").css("display","inline");
+		$("#div4").css("display","none");
+		$("#div5").css("display","none");
+		$("#topictable").css("display","none");
+		sss();
+	}
+	sss();
+	function sss() {
+		$.ajax({
+			url: 'findMoney.do',
+			type: 'POST',
+			data: {
+				cardno:$("#c").val(),
+			},
+			dataType:"json",
+			success:function (data){
+				$("#font").html(data);
+				$("#fonts").html(data);
+			}
+		})
+	}
+	function passon() {
+		$("#div4").css("display","none");
+		$("#div1").css("display","none");
+		$("#div2").css("display","none");
+		$("#div3").css("display","inline");
+		$("#div5").css("display","none");
+		$("#topictable").html("");
+	}
+	function pass() {
+		if($("#cardno").val()==$("#passcard").val()){
+			alert("您要转入的账号有误!")
+		}else if($("#cardno").val().length<16 || isNaN($("#cardno").val())==true){
+			alert("请正确输入您要转入的16位账号!") 
+		}else if($("#money").val()==null || $("#money").val().length==0){
+			alert("请输入您要转出的金额!")
+		}else if(isNaN($("#money").val())==true || $("#money").val()<=0){
+			alert("请输入正确的金额!") 
+		}else if(parseInt($("#money").val())>parseInt($("#fonts").html())){
+			alert("您的金额不足,请重新输入!")
+			$("#money").val("");
+		}else{
+			$.ajax({
+				url: 'passOnMoney.do',
+				type: 'POST',
+				data: {
+					passOutCardno:$("#passcard").val(),
+					passOnCardno:$("#cardno").val(),
+					money: $("#money").val()
+				},
+				dataType:"json",
+				success:function (data){
+					if(data==0){
+						alert("您要转入的账号不存在!")
+					}else if(data==1){
+						alert("您要转入的账号已被冻结!")
+					}else{
+						alert("转账成功!")
+						$("#money").val("");
+						$("#cardno").val("");
+						sss();
+					}
+				}
+			})
+		}
+	}
+	function findRecord(){
+		$("#div1").css("display","none");
+		$("#div3").css("display","none");
+		$("#div2").css("display","none");
+		$("#div5").css("display","none");
+		$("#div4").css("display","inline");
+		$("#topictable").css("display","none");
+	}
+	function findDate() {
+		$("#topictable").datagrid({
+			url: "${pageContext.request.contextPath }/findRecorde.do?date1="+$("#date1").datebox('getValue')+"&date2="+$("#date2").datebox('getValue')+"&cardno="+$("#c").val(), 
+			columns: [[{
+				field: 'cardno',
+				title: '卡号',
+				width: 250,
+			},{
+				field: 'transactionDate',
+				title: '交易日期',
+				width: 200, 
+			},{
+				field: 'expense',
+				title: '支出(元)',
+				width: 100,
+			},{
+				field: 'income',
+				title: '存入(元)',
+				width: 100,
+			},{
+				field: 'balance',
+				title: '账户余额(元)',
+				width: 100,
+			},{
+				field: 'transactionType',
+				title: '交易类型',
+				width: 100,
+			}]],
+			pagination: true,
+			pageSize:5,
+			pageList: [2, 4, 5, 10],
+			pageNumber: 1,
+			fit: true,
+		})
+	}
+	function updatePwd(){
+		$("#div1").css("display","none");
+		$("#div3").css("display","none");
+		$("#div2").css("display","none");
+		$("#div4").css("display","none");
+		$("#div5").css("display","inline");
+	}
+	function updatAccount() {
+		if($("#oldPwd").val().length<6 || $("#oldPwd").val()==null || isNaN($("#oldPwd").val())==true){
+			alert("请输入正确的旧密码!")
+		}else if($("#newPwd").val().length<6 || $("#newPwd").val()==null || isNaN($("#newPwd").val())==true){
+			alert("请输入正确的新密码!")
+		}else if($("#newsPwd").val().length<6 || $("#newsPwd").val()==null || isNaN($("#newsPwd").val())==true){
+			alert("请输入正确的新密码!")
+		}else if($("#oldPwd").val()==$("#newPwd").val() || $("#oldPwd").val()==$("#newsPwd").val()){
+			alert("新密码不能与旧密码一致!")
+		}else if($("#newPwd").val()!=$("#newsPwd").val()){
+			alert("两次输入的新密码不一致!")
+		}else if($("#oldPwd").val()!=$("#pwd").val()){
+			alert("旧密码错误!")
+		}else{
+			$.ajax({
+				url: 'updatePwd.do',
+				type: 'POST',
+				data: {
+					cardno:$("#c").val(),
+					newPwd:$("#newPwd").val(),
+				},
+				dataType:"json",
+				success:function (data){
+					alert("修改密码成功,请重新登录!")
+					window.location.href="${pageContext.request.contextPath }/clear.do";
+				}
+			})
+		}
+	}
+</script>
+</html>

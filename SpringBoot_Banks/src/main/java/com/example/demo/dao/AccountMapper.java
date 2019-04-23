@@ -11,7 +11,7 @@ public interface AccountMapper {
 
     int deleteByExample(AccountExample example);
 
-    int deleteByPrimaryKey(String cardno);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Account record);
 
@@ -19,7 +19,7 @@ public interface AccountMapper {
 
     List<Account> selectByExample(AccountExample example);
 
-    Account selectByPrimaryKey(String cardno);
+    Account selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Account record, @Param("example") AccountExample example);
 

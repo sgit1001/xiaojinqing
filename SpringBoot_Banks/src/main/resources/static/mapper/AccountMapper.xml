@@ -193,4 +193,13 @@
       status = #{status,jdbcType=INTEGER}
     where cardno = #{cardno,jdbcType=VARCHAR}
   </update>
+  <select id="selectcardno" parameterType="String" resultType="Integer">
+  		SELECT id FROM `account` where cardno=#{cardno};
+  </select>
+  <select id="selectpwd" parameterType="String" resultType="String" >
+  		SELECT `password` FROM `account` where cardno=#{cardno};
+  </select>
+  <select id="selectstatus" parameterType="String" resultType="Integer">
+  	SELECT `status` FROM `account` where cardno=#{cardno};
+  </select>
 </mapper>

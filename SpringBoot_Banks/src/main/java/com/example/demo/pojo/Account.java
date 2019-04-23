@@ -22,56 +22,35 @@ public class Account {
 	@Column(name = "status")
     private Integer status;
 
-	public Account() {
-		super();
-	}
+    public String getCardno() {
+        return cardno;
+    }
 
-	public Account(int id, String cardno, String password, Double balance, Integer status) {
-		super();
-		this.id = id;
-		this.cardno = cardno;
-		this.password = password;
-		this.balance = balance;
-		this.status = status;
-	}
+    public void setCardno(String cardno) {
+        this.cardno = cardno == null ? null : cardno.trim();
+    }
 
-	public int getId() {
-		return id;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
 
-	public String getCardno() {
-		return cardno;
-	}
+    public Double getBalance() {
+        return balance;
+    }
 
-	public void setCardno(String cardno) {
-		this.cardno = cardno;
-	}
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public Integer getStatus() {
+        return status;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

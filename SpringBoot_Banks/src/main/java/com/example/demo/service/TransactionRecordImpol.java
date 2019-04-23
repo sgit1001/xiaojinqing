@@ -16,8 +16,8 @@ public class TransactionRecordImpol implements TransactionRecordService {
 	
 	@Override
 	public TransactionRecord findMoney(int id) {
-		Optional<TransactionRecord> optional = mapper.findById(id);
-		return optional.get(); 
+		TransactionRecord optional = mapper.selectByPrimaryKey(id);
+		return optional; 
 	}
 
 }

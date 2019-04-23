@@ -14,7 +14,8 @@ public class TransactionRecordImpol implements TransactionRecordService {
 
 	@Autowired
 	private TransactionRecordMapper mapper;
-	@Autowired
+	
+	@Autowired(required=true)
 	private AccountMapper account;
 	
 	@Override

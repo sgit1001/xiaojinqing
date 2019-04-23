@@ -1,22 +1,20 @@
 package com.example.demo.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-
 public class TransactionRecord {
-
     private Integer id;
+
     private String cardno;
+
     private String transactionDate;
+
     private Double expense;
+
     private Double income;
+
     private Double balance;
+
     private String transactionType;
+
     private String remark;
 
     public Integer getId() {

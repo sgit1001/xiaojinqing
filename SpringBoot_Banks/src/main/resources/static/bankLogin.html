@@ -48,13 +48,13 @@
 				},
 				dataType:"json",
 				success:function (data){
-					if(data==4){
+					if(data==1){
 						window.location.href="main.jsp";
-					}else if(data==3){
+					}else if(data==2){
 						alert("您的账号已被冻结!")
-					}else if(data==0 || data==2){
+					}else if(data==4){
 						alert("您输入的卡号不存在!")
-					}else if(data==1){
+					}else if(data==3){
 						users = $("#user").val();
 						num++;
 						if((3-num)!=0){

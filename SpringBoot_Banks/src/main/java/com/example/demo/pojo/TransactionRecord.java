@@ -7,26 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="Transaction_record")
+
 public class TransactionRecord {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Id
-	@Column(name="id")
+
     private Integer id;
-	@Column(name="cardno")
     private String cardno;
-	@Column(name="transactionDate")
     private String transactionDate;
-	@Column(name="expense")
     private Double expense;
-	@Column(name="income")
     private Double income;
-	@Column(name="balance")
     private Double balance;
-	@Column(name="transactionType")
     private String transactionType;
-	@Column(name="remark")
     private String remark;
 
     public Integer getId() {

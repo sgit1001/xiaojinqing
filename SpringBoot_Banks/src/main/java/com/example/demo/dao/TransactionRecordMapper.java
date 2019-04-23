@@ -6,9 +6,6 @@ import com.example.demo.pojo.TransactionRecordExample;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-
 @Mapper
 public interface TransactionRecordMapper {
     int countByExample(TransactionRecordExample example);
@@ -24,10 +21,6 @@ public interface TransactionRecordMapper {
     List<TransactionRecord> selectByExample(TransactionRecordExample example);
 
     TransactionRecord selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") TransactionRecord record, @Param("example") TransactionRecordExample example);
-
-    int updateByExample(@Param("record") TransactionRecord record, @Param("example") TransactionRecordExample example);
 
     int updateByPrimaryKeySelective(TransactionRecord record);
 

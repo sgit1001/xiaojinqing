@@ -2,6 +2,7 @@ package com.example.demo.xiaojinqing.web;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,15 @@ public class AccountController {
 	public void selectById(String cardno, HttpServletResponse response) {
 		try {
 			response.getWriter().println(tr.findMoney(cardno).getBalance());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@RequestMapping("findCardNo.do")
+	public void findCardNo( HttpServletRequest request,HttpServletResponse response) {
+		try {
+			response.getWriter().println(request.getSession().getAttribute("cardno"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

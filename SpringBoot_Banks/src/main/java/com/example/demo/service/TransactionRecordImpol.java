@@ -26,13 +26,6 @@ public class TransactionRecordImpol implements TransactionRecordService {
 	}
 
 	@Override
-	public Integer selectcardno(String cardno) {
-		// TODO Auto-generated method stub
-		Integer integer = account.selectcardno(cardno);
-		return integer;
-	}
-
-	@Override
 	public String selectpwd(String cardno) {
 		// TODO Auto-generated method stub
 		String string = account.selectpwd(cardno);

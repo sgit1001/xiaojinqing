@@ -1,7 +1,6 @@
 package com.example.demo.pojo;
 
 public class Account {
-    private Integer id;
 
     private String cardno;
 
@@ -10,14 +9,6 @@ public class Account {
     private Double balance;
 
     private Integer status;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCardno() {
         return cardno;

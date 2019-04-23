@@ -20,28 +20,20 @@ public class MyController {
 	
 	@RequestMapping("login")
 	public  void login(String username, String pwd,HttpServletRequest request,HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		int id = tran.selectcardno(username);
-		//1.登录成功，2.账号冻结，3.密码错误，4.账号有误。
+		//1.登录成功，2.账号冻结，3.密码错误
 		try {
-			if (id>0) {
-				session.setAttribute("id", id);
 				String  selectpwd = tran.selectpwd(username);
 				if(selectpwd.equals(pwd)) {
 					Integer status = tran.selectstatus(username);
 					if(status == 1) {
-						session.setAttribute("cardno", username);
+						request.getSession().setAttribute("cardno", username);
 						response.getWriter().println(1);
 					}else {
 						response.getWriter().println(2);
 					}
-					
 				}else {
 					response.getWriter().println(3);
 				}
-			}else {
-				response.getWriter().println(4);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

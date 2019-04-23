@@ -2,6 +2,8 @@ package com.example.demo.pojo;
 
 public class TransactionRecord {
 
+	private int id;
+	
     private String cardno;
 
     private String transactionDate;
@@ -17,7 +19,15 @@ public class TransactionRecord {
     private String remark;
 
 
-    public String getCardno() {
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCardno() {
         return cardno;
     }
 
@@ -72,4 +82,12 @@ public class TransactionRecord {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "TransactionRecord [id=" + id + ", cardno=" + cardno + ", transactionDate=" + transactionDate
+				+ ", expense=" + expense + ", income=" + income + ", balance=" + balance + ", transactionType="
+				+ transactionType + ", remark=" + remark + "]";
+	}
+    
 }

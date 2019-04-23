@@ -28,8 +28,6 @@ public interface AccountMapper {
 
     int updateByPrimaryKey(Account record);
     
-    Integer selectcardno(String cardno);
-    
     String selectpwd (String cardno);
     
     Integer selectstatus(String cardno);

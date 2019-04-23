@@ -2,6 +2,7 @@ package com.example.demo.xiaojinqing.web;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,6 @@ public class TransactionRecordController {
 	@RequestMapping("findRecorde")
 	public void findRecorde(String date1, String date2, String cardno, HttpServletRequest request,
 			HttpServletResponse response) {
-		System.out.println(date1+","+date2);
 		response.setContentType("text/html;charset=utf-8");
 		Map map = new HashMap<>();
 		int ye = Integer.parseInt(request.getParameter("page"));// 页数
@@ -43,9 +43,13 @@ public class TransactionRecordController {
 			dates = date2;
 		}
 		PageHelper.startPage(ye, hang);
-		List<TransactionRecord> list = recode.findAll(new Dates(date1, dates, "1234567890123456"));
-		PageInfo info = new PageInfo<>(list);
-		map.put("rows", list);
+		List<TransactionRecord> list = recode.findAll(new Dates(date1, dates, cardno));
+		List<TransactionRecord> list2 = new ArrayList<TransactionRecord>();
+		for (TransactionRecord transactionRecord : list) {
+			list2.add(transactionRecord);
+		}
+		PageInfo info = new PageInfo<>(list2);
+		map.put("rows", list2);
 		map.put("total", info.getTotal());
 		System.out.println(map);
 		try {

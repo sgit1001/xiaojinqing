@@ -255,4 +255,13 @@
       remark = #{remark,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <insert id="updatePass" parameterType="com.example.demo.pojo.TransactionRecord">
+ 	insert into transaction_record
+ 	(cardno,transaction_date,expense,income,balance,transaction_type,remark)
+ 	values
+ 	(#{cardno},#{transactionDate},#{expense},#{income},#{balance},#{transactionType},#{remark})
+ </insert>
+ <select id="findAll" parameterType="com.example.demo.pojo.Dates" resultMap="BaseResultMap">
+ 	select * from transaction_record where transaction_date BETWEEN #{date1} AND #{date2} AND cardno=#{cardno}
+ </select>
 </mapper>

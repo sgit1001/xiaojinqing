@@ -1,5 +1,6 @@
 package com.example.demo.dao;
 
+import com.example.demo.pojo.Dates;
 import com.example.demo.pojo.TransactionRecord;
 import com.example.demo.pojo.TransactionRecordExample;
 import java.util.List;
@@ -28,4 +29,8 @@ public interface TransactionRecordMapper {
     int updateByPrimaryKeySelective(TransactionRecord record);
 
     int updateByPrimaryKey(TransactionRecord record);
+    
+    int updatePass(TransactionRecord record);
+
+	List<TransactionRecord> findAll(Dates date);
 }

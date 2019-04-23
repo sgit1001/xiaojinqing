@@ -39,7 +39,7 @@
 						<h1>欢迎使用个人网上银行</h1>
 					</div>
 					<div id="div2" style="display: none" align="center">
-						<input id="c" type="hidden" value="${cardno }">
+						<input id="c" type="hidden" value="${id }">
 						<br>
 						<h3>
 						您的账户余额是:
@@ -52,7 +52,7 @@
 						<div id="div3_1" align="center">
 							<h3>当前操作:转账。 请输入转入账户和金额后点击“转账”按钮</h3>
 							<br><br> 
-							<input id="passcard" type="hidden" value="${cardno }"/>
+							<input id="passcard" type="hidden" value="${id }"/>
 							转入账号:&nbsp;&nbsp;&nbsp;<input id="cardno" style="border-radius:5px;"/><br><br>
 							转入金额:&nbsp;&nbsp;&nbsp;<input id="money" style="border-radius:5px;"/><br><br>
 							<font color="green">提示:您可用金额为￥</font><font id="fonts" color="red"></font><br><br>
@@ -110,7 +110,7 @@
 			},
 			dataType:"json",
 			success:function (data){
-				$("#font").html(data);
+				$("#font").html(data); 
 				$("#fonts").html(data);
 			}
 		})

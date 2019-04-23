@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ public class TransactionRecordImpol implements TransactionRecordService {
 	@Autowired
 	private TransactionRecordMapper mapper;
 	
-	@Autowired(required=true)
+	@Autowired
 	private AccountMapper account;
 	
 	@Override

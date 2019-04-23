@@ -5,8 +5,11 @@ import com.example.demo.pojo.TransactionRecord;
 import com.example.demo.pojo.TransactionRecordExample;
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+
+@Mapper
 public interface TransactionRecordMapper {
     int countByExample(TransactionRecordExample example);
 

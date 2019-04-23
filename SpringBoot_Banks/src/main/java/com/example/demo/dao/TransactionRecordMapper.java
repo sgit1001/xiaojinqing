@@ -4,7 +4,6 @@ import com.example.demo.pojo.Dates;
 import com.example.demo.pojo.TransactionRecord;
 import com.example.demo.pojo.TransactionRecordExample;
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface TransactionRecordMapper {

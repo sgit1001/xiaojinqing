@@ -11,12 +11,11 @@ import com.example.demo.pojo.Account;
 public class AccountImpol implements AccountService{
 
 	@Autowired
-	private AccountMapper mapper;
-	
+	private AccountMapper map;
 	
 	@Override
 	public Account findMoney(int id) {
-		Account optional = mapper.selectByPrimaryKey(id);
+		Account optional = map.selectByPrimaryKey(id);
 		return optional; 
 	}
 

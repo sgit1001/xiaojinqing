@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AccountMapper {
+	
     int countByExample(AccountExample example);
 
     int deleteByExample(AccountExample example);
@@ -23,11 +24,13 @@ public interface AccountMapper {
 
     Account selectByPrimaryKey(Integer id);
 
-
     int updateByPrimaryKeySelective(Account record);
 
     int updateByPrimaryKey(Account record);
+    
     Integer selectcardno(String cardno);
+    
     String selectpwd (String cardno);
+    
     Integer selectstatus(String cardno);
 }

@@ -33,4 +33,6 @@ public interface AccountMapper {
     String selectpwd (String cardno);
     
     Integer selectstatus(String cardno);
+    
+    Account selectMoney(String cardno);
 }

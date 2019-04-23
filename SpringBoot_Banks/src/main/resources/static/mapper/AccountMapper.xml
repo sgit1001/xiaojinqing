@@ -217,4 +217,7 @@
   <select id="selectstatus" parameterType="String" resultType="Integer">
   	SELECT `status` FROM `account` where cardno=#{cardno};
   </select>
+  <select id="selectMoney" parameterType="String" resultType="BaseResultMap">
+  	SELECT * FROM account where cardno=#{cardno};
+  </select>
 </mapper>

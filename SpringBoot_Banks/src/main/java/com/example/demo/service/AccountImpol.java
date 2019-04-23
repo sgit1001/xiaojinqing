@@ -14,9 +14,9 @@ public class AccountImpol implements AccountService{
 	private AccountMapper map;
 	
 	@Override
-	public Account findMoney(int id) {
-		Account optional = map.selectByPrimaryKey(id);
-		return optional; 
+	public Account findMoney(String id) {
+		
+		return map.selectMoney(id); 
 	}
 
 }

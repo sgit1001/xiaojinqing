@@ -4,7 +4,6 @@ public class Dates {
 	private String date2;
 	private String cardno;
 	private Integer newPwd;
-
 	public Dates() {
 		super();
 	}

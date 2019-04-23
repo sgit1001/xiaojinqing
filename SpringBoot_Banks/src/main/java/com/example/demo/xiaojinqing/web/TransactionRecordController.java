@@ -26,9 +26,10 @@ public class TransactionRecordController {
 	@Autowired
 	private TransactionRecordService recode;
 	
-	@RequestMapping("/findRecorde.do")
+	@RequestMapping("findRecorde")
 	public void findRecorde(String date1, String date2, String cardno, HttpServletRequest request,
 			HttpServletResponse response) {
+		System.out.println(date1+","+date2);
 		response.setContentType("text/html;charset=utf-8");
 		Map map = new HashMap<>();
 		int ye = Integer.parseInt(request.getParameter("page"));// 页数
@@ -41,13 +42,12 @@ public class TransactionRecordController {
 		} else {
 			dates = date2;
 		}
-		
 		PageHelper.startPage(ye, hang);
-	
-		List<TransactionRecord> list = recode.findAll(new Dates(date1, dates, cardno));
+		List<TransactionRecord> list = recode.findAll(new Dates(date1, dates, "1234567890123456"));
 		PageInfo info = new PageInfo<>(list);
 		map.put("rows", list);
 		map.put("total", info.getTotal());
+		System.out.println(map);
 		try {
 			response.getWriter().println(map);
 		} catch (IOException e) {

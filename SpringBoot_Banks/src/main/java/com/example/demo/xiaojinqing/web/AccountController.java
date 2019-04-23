@@ -18,10 +18,10 @@ public class AccountController {
 	@Autowired
 	private AccountService tr;
 	
-	@RequestMapping("selectById.do")
-	public void selectById(int id, HttpServletResponse response) {
+	@RequestMapping("findMoney.do")
+	public void selectById(String cardno, HttpServletResponse response) {
 		try {
-			response.getWriter().println(tr.findMoney(id).getBalance());
+			response.getWriter().println(tr.findMoney(cardno).getBalance());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

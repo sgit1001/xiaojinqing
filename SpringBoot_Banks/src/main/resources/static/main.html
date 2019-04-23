@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,9 +14,9 @@
 <table align="center" border="1"  width="80%" height="400px"> 
 		<tr>
 			<td colspan="2" height="100px">
-				卡号:&nbsp;&nbsp;<font color="red">${cardno }</font>
+				卡号:&nbsp;&nbsp;<font color="red"></font>
 				&nbsp;&nbsp;&nbsp;
-				<a href="${pageContext.request.contextPath }/clear.do">退出登录</a>
+				<a href="${pageContext.request.contextPath }/out">退出登录</a>
 			</td>
 		</tr> 
 		<tr>
@@ -170,7 +168,7 @@
 	}
 	function findDate() {
 		$("#topictable").datagrid({
-			url: "${pageContext.request.contextPath }/findRecorde.do?date1="+$("#date1").datebox('getValue')+"&date2="+$("#date2").datebox('getValue')+"&cardno="+$("#c").val(), 
+			url: "findRecorde?date1="+$("#date1").datebox('getValue')+"&date2="+$("#date2").datebox('getValue')+"&cardno=1234567890123456", 
 			columns: [[{
 				field: 'cardno',
 				title: '卡号',

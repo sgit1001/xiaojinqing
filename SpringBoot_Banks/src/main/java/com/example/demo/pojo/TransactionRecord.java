@@ -1,7 +1,6 @@
 package com.example.demo.pojo;
 
 public class TransactionRecord {
-    private Integer id;
 
     private String cardno;
 
@@ -17,13 +16,6 @@ public class TransactionRecord {
 
     private String remark;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getCardno() {
         return cardno;

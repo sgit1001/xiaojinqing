@@ -42,7 +42,7 @@ public class TransactionRecordController {
 			dates = date2;
 		}
 		
-			PageHelper.startPage(ye, hang);
+		PageHelper.startPage(ye, hang);
 	
 		List<TransactionRecord> list = recode.findAll(new Dates(date1, dates, cardno));
 		PageInfo info = new PageInfo<>(list);
